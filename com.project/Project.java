@@ -7,7 +7,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 public class Project {
 
     public static void main(String[] args) {
-        System.out.println();
+        readexcel.Readsheet(readexcel.getSheet1("D:\\arcane\\tests.xlsx"));
+        System.out.println(readexcel.getCell(readexcel.getSheet1("D:\\arcane\\tests.xlsx"),0,0));
 
 
     }
