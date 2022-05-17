@@ -1,5 +1,5 @@
-package com.project;
 
+package com.project;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -9,31 +9,25 @@ import java.util.Iterator;
 
 public class Operation {
     private String API_Name;
-    private XSSFSheet Sheet;
-    private ArrayList<Field> Fields;
+    private ArrayList<Field> Fields; // array of all the fields in this file
 
-    Operation(XSSFSheet Sheet)
+    Operation(XSSFSheet sheet)
     {
-        this.Sheet = Sheet;
-        Iterator<Row> iterator = Sheet.iterator();
-        for (int i=0; iterator.hasNext(); i++)
+        Fields = new ArrayList<Field>();
+        for (int i=7; i<=sheet.getPhysicalNumberOfRows(); i++) // To Be Done Better
         {
-            Row nextRow = iterator.next();
-            
-                if(nextRow.getCell(0).getStringCellValue() == "I" || nextRow.getCell(0).getStringCellValue() == "O")
-                {
-                    Fields.add(new Field(Sheet, i));
-
-
-                }
-
-
-            }
-
+            Fields.add(new Field(sheet, i));
         }
 
-    }
-
-
-
 }
+}
+
+
+
+
+
+
+
+
+
+

@@ -42,12 +42,20 @@ public abstract class readexcel {
 
             }
 
+
         }
 
     }
-
     public static String getCell(XSSFSheet sheet, int row, int column){
-        return sheet.getRow(row).getCell(column).getStringCellValue();
+        try {
+            return sheet.getRow(row).getCell(column).getStringCellValue();
+        }
+        catch (NullPointerException x)
+        {
+            return null;
+        }
     }
 
-}
+
+    }
+
