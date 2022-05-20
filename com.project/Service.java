@@ -1,4 +1,6 @@
 package com.project;
 
-public class Service {
+public class Service
+{
+
 }
