@@ -74,8 +74,10 @@ public class Field {
     public String getFieldName() {
         if(FieldName == null)
             return null;
-        else if ()
-        return FieldName[FieldName.length-2];
+        else if (FieldName.length>=2)
+        {return FieldName[FieldName.length-2];}
+        else
+            return null;
     }
     public String getParent()
     {

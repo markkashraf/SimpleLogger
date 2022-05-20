@@ -27,7 +27,7 @@ public class Project {
 
         Operation x = new Operation(sheet);
 
-        System.out.println(x.RealObjects.get(0).get(0).getFieldName());
+        System.out.println();
 
 
 

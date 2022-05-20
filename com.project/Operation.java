@@ -1,21 +1,18 @@
 
 package com.project;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Objects;
 
 public class Operation {
 
-    ArrayList<ArrayList<Field>> RealObjects;
+    ArrayList<ArrayList<Field>> SortedObjects;
     Operation(XSSFSheet sheet)
     {
-        ArrayList<Field> Fields = new ArrayList<Field>();
-        ArrayList<Field> Objects = new ArrayList<Field>();
-        RealObjects = new ArrayList<ArrayList<Field>>();
+        ArrayList<Field> TempFields = new ArrayList<Field>();
+        ArrayList<Field> TempObjects = new ArrayList<Field>();
+        SortedObjects = new ArrayList<ArrayList<Field>>();
+        ArrayList<Obj> RealObjects = new ArrayList<Obj>();
 
 
         for(int i = 0; i < sheet.getPhysicalNumberOfRows(); i++)
@@ -24,32 +21,54 @@ public class Operation {
 
             if(x.getType().equals("string"))
             {
-                Fields.add(x);
+                TempFields.add(x);
             }
             else if (!(x.getType().equals("Type")) && !(x.getType().equals("")))
             {
-                Objects.add(x);
+                TempObjects.add(x);
             }
         }
 
-        for (int i = 0; i<Objects.size(); i++)
+        for (int i = 0; i<TempObjects.size(); i++)
         {
-            RealObjects.add(new ArrayList<Field>());
-            RealObjects.get(i).add(Objects.get(i));
+            SortedObjects.add(new ArrayList<Field>());
+            SortedObjects.get(i).add(TempObjects.get(i));
         }
 
-        for (int i=0; i<Fields.size(); i++)
+        for (int i=0; i<TempFields.size(); i++)
         {
 
-            for (int j=0; j<Objects.size(); j++)
+            for (int j=0; j<TempObjects.size(); j++)
             {
-                if(RealObjects.get(j).get(0).getType().equals(Fields.get(i).getParent()))
+                if(SortedObjects.get(j).get(0).getType().equals(TempFields.get(i).getParent()))
                 {
-                    RealObjects.get(j).add(Fields.get(i));
+                    SortedObjects.get(j).add(TempFields.get(i));
 
                 }
             }
         }
+        Obj x;
+        for (int i=0; i < SortedObjects.size(); i++)
+        {
+            x = new Obj();
+            x.ObjectName = SortedObjects.get(i).get(0).getType();
+            for (int j=0; j < SortedObjects.get(i).size(); j++)
+            {
+                if(SortedObjects.get(i).get(j).getType().equals("string"))
+                {x.Fields.add(SortedObjects.get(i).get(j));}
+
+
+
+
+
+
+
+            }
+
+        }
+
+
+
 
 
 
