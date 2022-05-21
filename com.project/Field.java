@@ -15,19 +15,22 @@ public class Field {
 
     public Field(XSSFSheet sheet , int row)
     {
-            try {
+            try 
+            {
                 Type = sheet.getRow(row).getCell(2).getStringCellValue();
-                IO = sheet.getRow(row).getCell(0).getStringCellValue();
-                //FieldName = sheet.getRow(row).getCell(1).getStringCellValue();
+                IO = sheet.getRow(row).getCell(0).getStringCellValue();        
                 FieldName = sheet.getRow(row).getCell(1).getStringCellValue().substring(1).split("/");
                 Name = sheet.getRow(row).getCell(1).getStringCellValue().substring(1).split("/")[FieldName.length-1];
                 AllowedValues = sheet.getRow(row).getCell(3).getStringCellValue();
                 Mandatory = sheet.getRow(row).getCell(4).getStringCellValue();
+                
                 if(FieldName.length >=2)
                     Parent = sheet.getRow(row).getCell(1).getStringCellValue().split("/")[FieldName.length-1];
                 else
                     Parent = "";
             }
+        
+        
             catch (NullPointerException x)
             {
 
