@@ -1,21 +1,17 @@
 package com.project;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.json.JSONObject;
 
-import java.util.Arrays;
-import java.util.Objects;
 
 public class Field {
+
     private String Type;
     private String AllowedValues;
     private String Mandatory;
     private String IO;
-    private String[] FieldName;
-    private String Parent;
-    JSONObject jo = new JSONObject();
+    private transient String[] FieldName;
+    private String Name;
+    private transient String Parent;
 
     public Field(XSSFSheet sheet , int row)
     {
@@ -24,12 +20,13 @@ public class Field {
                 IO = sheet.getRow(row).getCell(0).getStringCellValue();
                 //FieldName = sheet.getRow(row).getCell(1).getStringCellValue();
                 FieldName = sheet.getRow(row).getCell(1).getStringCellValue().substring(1).split("/");
+                Name = sheet.getRow(row).getCell(1).getStringCellValue().substring(1).split("/")[FieldName.length-1];
                 AllowedValues = sheet.getRow(row).getCell(3).getStringCellValue();
                 Mandatory = sheet.getRow(row).getCell(4).getStringCellValue();
                 if(FieldName.length >=2)
-                    Parent = FieldName[FieldName.length-2];
+                    Parent = sheet.getRow(row).getCell(1).getStringCellValue().split("/")[FieldName.length-1];
                 else
-                    Parent = null;
+                    Parent = "";
             }
             catch (NullPointerException x)
             {
@@ -72,12 +69,17 @@ public class Field {
     }
 
     public String getFieldName() {
-        if(FieldName == null)
+        if(FieldName.length >= 2)
+        {
+            return FieldName[FieldName.length-2];
+        }
+        else if(FieldName.length == 0)
+        {
             return null;
-        else if (FieldName.length>=2)
-        {return FieldName[FieldName.length-2];}
+        }
         else
-            return null;
+            return FieldName[0];
+
     }
     public String getParent()
     {
@@ -87,5 +89,7 @@ public class Field {
            return Parent;
     }
 
-
+    public String getName() {
+        return Name;
+    }
 }
