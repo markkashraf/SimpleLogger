@@ -7,7 +7,7 @@ import java.util.Iterator;
 
 public class Operation {
 
-    ArrayList<Obj> RealObjects;//DONE
+    private ArrayList<Obj> RealObjects;//DONE
 
     private String HTTP_OP;            //TBD
     private String Rest_URL;           //TBD
@@ -19,17 +19,6 @@ public class Operation {
 
     Operation(XSSFSheet sheet, int Beginning_Row, int Ending_Row)
     {
-        /////////////////////////////////////////////////////////
-        // To be Done:                                         //
-        // 1) Get Beginning and ending of the Sheet (DONE)     //
-        // 2) Get HTTP_OP, RestURL.(DONE)   (small problem)    //
-        // 3) Create a JSON Object of the Operation Object     //
-        // 4) Start Working on the Service Class.  (DONE)      //
-        // 5) GUI (Marco)                                      //
-        /////////////////////////////////////////////////////////
-
-
-
         ArrayList<Field> TempFields = new ArrayList<Field>();
         ArrayList<Field> TempObjects = new ArrayList<Field>();
         ArrayList<ArrayList<Field>> SortedObjects = new ArrayList<ArrayList<Field>>();
@@ -39,7 +28,6 @@ public class Operation {
         for (int i = Beginning_Row; i <= Ending_Row; i++)
         {
             Field x = new Field(sheet, i); // Iterator for Rows in the Sheet
-
 
             if (x.getType().equals("string")) // if the field type is string, add it to the Fields Array.
             {
@@ -128,6 +116,26 @@ public class Operation {
     public void setRest_URL(String rest_URL) {
         Rest_URL = rest_URL;
     }
+
+    public String getHTTP_OP() {
+        return HTTP_OP;
+    }
+
+    public String getRest_URL() {
+        return Rest_URL;
+    }
+
+    public String getAPI_Name() {
+        return API_Name;
+    }
+
+    public Obj getObject(int i)
+    {
+        return RealObjects.get(i);
+    }
+
+
+
 }
 
 

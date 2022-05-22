@@ -23,7 +23,8 @@ public abstract class readexcel {
     }
 
 
-    public static String getCell(XSSFSheet sheet, int row, int column) {
+    public static String getCell(XSSFSheet sheet, int row, int column)
+    {
         try {
             return sheet.getRow(row).getCell(column).getStringCellValue();
         } catch (NullPointerException x) {
@@ -48,7 +49,9 @@ public abstract class readexcel {
                 if(sheet.getRow(i).getCell(j) == null || sheet.getRow(i).getCell(j).toString().trim().equals(""))
                 {
                     isRowEmpty=true;
-                }else {
+                }
+                else
+                {
                     isRowEmpty=false;
                     break;
                 }
@@ -57,12 +60,8 @@ public abstract class readexcel {
                 sheet.shiftRows(i + 1, sheet.getLastRowNum(), -1);
                 i--;
             }
-
         }
 
-        FileOutputStream out = new FileOutputStream(new File("D:\\Project\\Test Excel File\\log.xlsx"));
-        workbook.write(out);
-        out.close();
         return sheet; // Get the First Sheet from the WorkBook
     }
 
