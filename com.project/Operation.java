@@ -1,26 +1,33 @@
 package com.project;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class Operation {
 
     ArrayList<Obj> RealObjects;//DONE
-    private int Beginning_Row; //TBD
-    private int Ending_Row;    //TBD
-    String HTTP_OP;            //TBD
-    String Rest_URL;           //TBD
 
-    Operation(XSSFSheet sheet)
+    private String HTTP_OP;            //TBD
+    private String Rest_URL;           //TBD
+    private String API_Name;
+
+    public void setAPI_Name(String API_Name) {
+        this.API_Name = API_Name;
+    }
+
+    Operation(XSSFSheet sheet, int Beginning_Row, int Ending_Row)
     {
-        ////////////////////////////////////////////////////
-        // To be Done:                                     //
-        // 1) Get Beginning and ending of the Sheet        //
-        // 2) Get HTTP_OP, RestURL.                        //
-        // 3) Create a JSON Object of the Operation Object //
-        // 4) Start Working on the Service Class.          //
-        // 5) GUI (Marco)                                  //
-        ////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////
+        // To be Done:                                         //
+        // 1) Get Beginning and ending of the Sheet (DONE)     //
+        // 2) Get HTTP_OP, RestURL.(DONE)   (small problem)    //
+        // 3) Create a JSON Object of the Operation Object     //
+        // 4) Start Working on the Service Class.  (DONE)      //
+        // 5) GUI (Marco)                                      //
+        /////////////////////////////////////////////////////////
+
 
 
         ArrayList<Field> TempFields = new ArrayList<Field>();
@@ -29,7 +36,7 @@ public class Operation {
         RealObjects = new ArrayList<Obj>();
 
     //Get the Fields from the Excel sheet
-        for (int i = 0; i < sheet.getPhysicalNumberOfRows(); i++)
+        for (int i = Beginning_Row; i <= Ending_Row; i++)
         {
             Field x = new Field(sheet, i); // Iterator for Rows in the Sheet
 
@@ -112,6 +119,14 @@ public class Operation {
                 }
             }
         }
+    }
+
+    public void setHTTP_OP(String HTTP_OP) {
+        this.HTTP_OP = HTTP_OP;
+    }
+
+    public void setRest_URL(String rest_URL) {
+        Rest_URL = rest_URL;
     }
 }
 
