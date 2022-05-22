@@ -15,13 +15,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public abstract class readexcel {
 
-    public static XSSFSheet getSheet1(String path) throws IOException {
-        File file = new File(path); // Create a new File (Path) Object.
-        FileInputStream inputStream = new FileInputStream(file); //Get The file as a stream of bytes.
-        XSSFWorkbook workbook = new XSSFWorkbook(inputStream); //Get a WorkBook from that FileStream.
-        return workbook.getSheetAt(0); // Get the First Sheet from the WorkBook
-    }
-
 
     public static String getCell(XSSFSheet sheet, int row, int column)
     {
@@ -32,15 +25,17 @@ public abstract class readexcel {
         }
     }
 
-    public static XSSFSheet getSheetRemoveBlank(String path) throws IOException
+    public static XSSFSheet getSheet1(String path) throws IOException
     {
-        FileInputStream inputStream = new FileInputStream(new File(path)); //Get The file as a stream of bytes.
+        FileInputStream inputStream = new FileInputStream(new File(path)); // Get The file as a stream of bytes.
         XSSFWorkbook workbook = new XSSFWorkbook(inputStream); //Get a WorkBook from that FileStream.
-        XSSFSheet sheet = workbook.getSheetAt(0);
-        boolean isRowEmpty = false;
-        for(int i = 0; i < sheet.getLastRowNum(); i++){
-            if(sheet.getRow(i)==null){
-                isRowEmpty=true;
+        XSSFSheet sheet = workbook.getSheetAt(0); //Get the First sheet in the Workbook.
+        boolean isRowEmpty = false; // boolean status for if the row is empty.
+        for(int i = 0; i < sheet.getLastRowNum(); i++)
+        {
+            if(sheet.getRow(i)==null) // if the current row is empty
+            {
+                isRowEmpty=true; // set the empty flag
                 sheet.shiftRows(i + 1, sheet.getLastRowNum(), -1);
                 i--;
                 continue;

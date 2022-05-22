@@ -7,10 +7,9 @@ import java.util.Iterator;
 
 public class Operation {
 
-    private ArrayList<Obj> RealObjects;//DONE
-
-    private String HTTP_OP;            //TBD
-    private String Rest_URL;           //TBD
+    private ArrayList<Obj> RealObjects;
+    private String HTTP_OP;
+    private String Rest_URL;
     private String API_Name;
 
     public void setAPI_Name(String API_Name) {
@@ -77,7 +76,6 @@ public class Operation {
         //is to combine the Object with its Corresponding Fields.
         //At this Point, I have created a new class (obj), this class is needed to combine the Fields and its Object.
         //Also, I created a new ArrayList to Hold my Objects (Created from the Obj Class).
-        //################___MOST________IMPORTANT______PART______###############
 
         for (int i = 0; i < SortedObjects.size(); i++)
         {

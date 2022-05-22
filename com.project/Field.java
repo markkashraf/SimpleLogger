@@ -3,8 +3,8 @@ package com.project;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 
-public class Field {
-
+public class Field
+{
     private String Type;
     private String AllowedValues;
     private String Mandatory;
@@ -13,7 +13,7 @@ public class Field {
     private String Name;
     private transient String Parent;
 
-    public Field(XSSFSheet sheet , int row)
+    public Field(XSSFSheet sheet, int row)
     {
             try 
             {
@@ -36,41 +36,32 @@ public class Field {
 
             }
     }
-    public Field()
-    {
 
-    }
-
-    public String getType()
-    {
+    public String getType() {
         if(Type == null)
             return "";
         else
             return Type;
 
     }
-
     public String getAllowedValues() {
         if(AllowedValues == null)
             return "";
         else
         return AllowedValues;
     }
-
     public String getMandatory() {
         if(Mandatory == null)
             return "";
         else
         return Mandatory;
     }
-
     public String getIO() {
         if(IO == null)
             return "";
         else
         return IO;
     }
-
     public String getFieldName() {
         if(FieldName.length >= 2)
         {
@@ -84,14 +75,12 @@ public class Field {
             return FieldName[0];
 
     }
-    public String getParent()
-    {
+    public String getParent() {
        if (Parent == null)
            return null;
        else
            return Parent;
     }
-
     public String getName() {
         return Name;
     }
