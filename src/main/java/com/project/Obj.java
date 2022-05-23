@@ -31,5 +31,9 @@ public class Obj
         return Fields.get(i);
     }
 
+    public int getNumberofFields()
+    {
+        return Fields.size();
+    }
 
 }
