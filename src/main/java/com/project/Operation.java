@@ -149,8 +149,14 @@ public class Operation {
     {
         return Response.get(i);
     }
-
-
+    public int getRequestSize()
+    {
+        return Request.size();
+    }
+    public int getResponseSize()
+    {
+        return Response.size();
+    }
 
 }
 
