@@ -12,24 +12,22 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import java.io.IOException;
 
-public class HelloApplication
+public class HelloApplication extends Application
 {
 
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args) throws IOException
     {
+
+        launch(args);
+
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws IOException {
+
         XSSFSheet sheet = readexcel.getSheet1("src\\Test Excel File\\Example.xlsx");
 
         Service x = new Service(sheet);
-
-        //launch(args);
-
-    }
-}
-
-   /* @Override
-    public void start(Stage primaryStage) throws IOException {
-
-
 
         //declare grid
         GridPane grid = new GridPane();
@@ -118,5 +116,8 @@ public class HelloApplication
 
     }
 
-}*/
+}
+
+
+
 
