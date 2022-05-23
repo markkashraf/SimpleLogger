@@ -60,17 +60,50 @@ public class HelloApplication extends Application {
 
         choiceBox.getSelectionModel().selectedIndexProperty().addListener((v, oldValue, newValue)-> {
 
+
             //print "Request"
             Text request = new Text("Request:");
             request.setFont(Font.font(20));
             GridPane.setConstraints(request, 0, 1);
             grid.getChildren().addAll(request);
 
+            //iterate over all objects in request in current operation
             for(int i = 0; i < x.getOperation(newValue.intValue() - 1).getRequestSize(); i++){
-                System.out.println(x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i).getObjectName());
 
-                for(int j = 0; j < x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i).getField(j).; j++){
-                    //x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i).getField(j).getName()
+                Text object = new Text(x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i).getObjectName() + ":");
+                object.setFont(Font.font(20));
+                if(i == 0)
+                {
+                    GridPane.setConstraints(object, 1, i + 1);
+                }
+                else
+                {
+                    GridPane.setConstraints(object, 1, i + 1 + x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i - 1).getNumberofFields());
+                }
+
+                grid.getChildren().addAll(object);
+
+
+
+                //System.out.println(x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i).getObjectName());
+
+                //iterate over every field in current object
+                for(int j = 0; j < x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i).getNumberofFields(); j++){
+
+                    Text field = new Text(x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i).getField(j).getName());
+                    field.setFont(Font.font(20));
+                    if(i == 0)
+                    {
+                        GridPane.setConstraints(field, 2, j + 1);
+                    }
+                    else
+                    {
+                        GridPane.setConstraints(field, 2, j + 1 +  x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i - 1).getNumberofFields());
+                    }
+
+                    grid.getChildren().addAll(field);
+
+                    System.out.println(x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i).getField(j).getName());
                 }
             }
 
@@ -79,7 +112,7 @@ public class HelloApplication extends Application {
 
 
         //declare scene
-        Scene scene = new Scene(grid, 1200, 700);
+        Scene scene = new Scene(grid, 1400, 700);
 
         //show primary stage
         primaryStage.setScene(scene);
