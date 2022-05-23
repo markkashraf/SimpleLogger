@@ -7,7 +7,8 @@ import java.util.Iterator;
 
 public class Operation {
 
-    private ArrayList<Obj> RealObjects;
+    private ArrayList<Obj> Request;
+    private ArrayList<Obj> Response;
     private String HTTP_OP;
     private String Rest_URL;
     private String API_Name;
@@ -21,8 +22,8 @@ public class Operation {
         ArrayList<Field> TempFields = new ArrayList<Field>();
         ArrayList<Field> TempObjects = new ArrayList<Field>();
         ArrayList<ArrayList<Field>> SortedObjects = new ArrayList<ArrayList<Field>>();
-        RealObjects = new ArrayList<Obj>();
-
+        Request = new ArrayList<Obj>();
+        Response = new ArrayList<Obj>();
     //Get the Fields from the Excel sheet
         for (int i = Beginning_Row; i <= Ending_Row; i++)
         {
@@ -59,17 +60,16 @@ public class Operation {
         {
             for (int j = 0; j < TempObjects.size(); j++) //Find the Parent of the Current Field, append it with its parent.
             {
-                if (SortedObjects.get(j).get(0).getType().equals(TempFields.get(i).getParent())) // If you find parent
+                if (SortedObjects.get(j).get(0).getType().equals(TempFields.get(i).getParent())) //If you find parent
                 {
                     SortedObjects.get(j).add(TempFields.get(i));//append the object to it
                 }
-
             }
             if (TempFields.get(i).getParent().equals("")) //If the Field has no parent, treat it as an object.
             {
                 SortedObjects.add(new ArrayList<Field>(1)); //Create a new ArrayList
                 SortedObjects.get(SortedObjects.size()-1).add(TempFields.get(i)); //Add the field to that arraylist
-                                                                                  //(Note: I am certain that it is the last element)
+                                                                                  //(Note:I am certain that it is the last element)
             }
         }
         //Until Now, I've been treating the Object as a Field, this would not suffice as our goal
@@ -81,7 +81,7 @@ public class Operation {
         {
             Obj x = new Obj(); //Create an Iterating Object
             x.setObjectName(SortedObjects.get(i).get(0).getName()); // Set the Object's Name.
-            //Remember : Index 0 of the Array SortedObjects Held the Object (as a Field Only).
+            //Remember: Index 0 of the Array SortedObjects Held the Object (as a Field Only).
 
             for (int j = 0; j < SortedObjects.get(i).size(); j++) //Fill the Fields of the Object.
             {
@@ -90,46 +90,65 @@ public class Operation {
                     x.AddFields(SortedObjects.get(i).get(j)); // Add it to the Fields Array of the Object.
                 }
             }
-            RealObjects.add(x); // Append the Object to an Array.
+            if(SortedObjects.get(i).get(0).getIO().equals("I"))
+            {
+                Request.add(x);
+            }
+            if(SortedObjects.get(i).get(0).getIO().equals("O")) {
+                Response.add(x);
+            }
+            // Append the Object to an Array.
         }
         //We now have an Array of our Objects, it is just missing the nested Objects.
         //so I added them manually.
 
         for (int i = 0; i < TempObjects.size(); i++) //Here, I made use of the Array I made that stored the Objects as Fields Only.
         {
-            for (int j = 0; j < RealObjects.size(); j++) //If the Object has the same name of the parent.
-            {
-                if(TempObjects.get(i).getParent().equals(RealObjects.get(j).getObjectName()))
+            for (int j = 0; j < TempObjects.size(); j++)
+            {      //If the Object has the same name of the parent.
+                if(j<Request.size()-1)
                 {
-                    RealObjects.get(j).AddFields(TempObjects.get(i)); //Add it as a Field.
+                 if(TempObjects.get(i).getParent().equals(Request.get(j).getObjectName()))
+                    {
+                        Request.get(j).AddFields(TempObjects.get(i)); //Add it as a Field.
+                    }
                 }
+
+                if(j<Response.size()-1)
+                {
+                    if(TempObjects.get(i).getParent().equals(Response.get(j).getObjectName()))
+                    {
+                        Response.get(j).AddFields(TempObjects.get(i)); //Add it as a Field.
+                    }
+                }
+
             }
         }
     }
 
+    //setters and getters
     public void setHTTP_OP(String HTTP_OP) {
         this.HTTP_OP = HTTP_OP;
     }
-
     public void setRest_URL(String rest_URL) {
         Rest_URL = rest_URL;
     }
-
     public String getHTTP_OP() {
         return HTTP_OP;
     }
-
     public String getRest_URL() {
         return Rest_URL;
     }
-
     public String getAPI_Name() {
         return API_Name;
     }
-
-    public Obj getObject(int i)
+    public Obj getObjectFromRequest(int i)
     {
-        return RealObjects.get(i);
+        return Request.get(i);
+    }
+    public Obj getObjectFromResponse(int i)
+    {
+        return Response.get(i);
     }
 
 

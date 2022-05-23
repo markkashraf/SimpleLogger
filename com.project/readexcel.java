@@ -13,10 +13,10 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public abstract class readexcel {
-
-
-    public static String getCell(XSSFSheet sheet, int row, int column)
+//This is a Utility Class, it contains some methods that are useful when handling Excel sheets.
+public abstract class readexcel
+{
+    public static String getCell(XSSFSheet sheet, int row, int column) //Get a Cell using Row and column.
     {
         try {
             return sheet.getRow(row).getCell(column).getStringCellValue();
@@ -25,7 +25,7 @@ public abstract class readexcel {
         }
     }
 
-    public static XSSFSheet getSheet1(String path) throws IOException
+    public static XSSFSheet getSheet1(String path) throws IOException //Get a sheet after removing blank rows (useful @ Processing).
     {
         FileInputStream inputStream = new FileInputStream(new File(path)); // Get The file as a stream of bytes.
         XSSFWorkbook workbook = new XSSFWorkbook(inputStream); //Get a WorkBook from that FileStream.
@@ -75,12 +75,7 @@ public abstract class readexcel {
         }
 
         return columnIndex;
-    }
-
-
-
-
-
+    } //Gets the last Filled Position of a Row.
 
 }
 
