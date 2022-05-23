@@ -66,8 +66,12 @@ public class HelloApplication extends Application {
             GridPane.setConstraints(request, 0, 1);
             grid.getChildren().addAll(request);
 
-            for(int i = 0; i < x.getOperation(newValue.intValue()); i++){
-                //`
+            for(int i = 0; i < x.getOperation(newValue.intValue() - 1).getRequestSize(); i++){
+                System.out.println(x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i).getObjectName());
+
+                for(int j = 0; j < x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i).getField(j).; j++){
+                    //x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i).getField(j).getName()
+                }
             }
 
 
