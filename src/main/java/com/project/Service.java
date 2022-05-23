@@ -1,11 +1,13 @@
 package com.project;
 
+import org.apache.poi.sl.draw.geom.GuideIf;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import java.util.ArrayList;
 
-public class Service {
-    ArrayList<Operation> Operations; //List Of the Operation inside the Service.
+public class Service
+{
+    private ArrayList<Operation> Operations;//List Of the Operation inside the Service.
     Service(XSSFSheet sheet)
     {
         Operations = new ArrayList<Operation>(); //Initialize the Operations ArrayList.
@@ -52,6 +54,22 @@ public class Service {
 
         }
     }
+
+    public int GetNumberOfOperations()
+    {
+        return Operations.size();
+    }
+    public Operation getOperation(int OpIndex)
+    {
+        return Operations.get(OpIndex);
+    }
+
+
+
+
+
+
+
 
 }
 
