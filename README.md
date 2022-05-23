@@ -1,4 +1,4 @@
-# Project
+# My First (Real) Programming Project!
 
 This project was made for the Advanced Computer Programming Course in ASU.
 
