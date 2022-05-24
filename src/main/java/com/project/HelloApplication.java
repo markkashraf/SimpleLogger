@@ -34,6 +34,7 @@ public class HelloApplication extends Application
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.setVgap(20);
         grid.setHgap(20);
+        grid.setGridLinesVisible(true);
 
         //declare choiceBox
         ChoiceBox<String> choiceBox = new ChoiceBox<>();
@@ -74,7 +75,7 @@ public class HelloApplication extends Application
                 }
                 else
                 {
-                    GridPane.setConstraints(object, 1, i + x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i - 1).getNumberofFields());
+                    GridPane.setConstraints(object, 1, i + (x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i - 1).getNumberofFields()));
                 }
 
                 grid.getChildren().addAll(object);
@@ -87,6 +88,7 @@ public class HelloApplication extends Application
                 for(int j = 0; j < x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i).getNumberofFields(); j++){
 
                     Text field = new Text(x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i).getField(j).getName());
+
                     field.setFont(Font.font(20));
                     if(i == 0)
                     {
