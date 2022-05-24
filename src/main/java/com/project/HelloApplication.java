@@ -74,17 +74,17 @@ public class HelloApplication extends Application
                 }
                 else
                 {
-                    GridPane.setConstraints(object, 1, i + 1 + x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i - 1).getNumberofFields());
+                    GridPane.setConstraints(object, 1, i + x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i - 1).getNumberofFields());
                 }
 
                 grid.getChildren().addAll(object);
 
 
 
-                //System.out.println(x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i).getObjectName());
+                System.out.println(x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i).getObjectName());
 
                 //iterate over every field in current object
-                for(int j = 0; j < x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i).getNumberofFields(); j++){
+                for(int j = 0; j < x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i).getNumberofFields(); j++){
 
                     Text field = new Text(x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i).getField(j).getName());
                     field.setFont(Font.font(20));
