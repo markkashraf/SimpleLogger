@@ -32,9 +32,10 @@ public class HelloApplication extends Application
         //declare grid
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10, 10, 10, 10));
-        grid.setVgap(20);
-        grid.setHgap(20);
-        grid.setGridLinesVisible(true);
+        grid.setVgap(10);
+        grid.setHgap(10);
+        grid.setGridLinesVisible(false);
+        
 
         //declare choiceBox
         ChoiceBox<String> choiceBox = new ChoiceBox<>();
@@ -64,25 +65,30 @@ public class HelloApplication extends Application
             GridPane.setConstraints(request, 0, 1);
             grid.getChildren().addAll(request);
 
+            int z = 1;
+
             //iterate over all objects in request in current operation
             for(int i = 0; i < x.getOperation(newValue.intValue() - 1).getRequestSize(); i++){
+
+
 
                 Text object = new Text(x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i).getObjectName() + ":");
                 object.setFont(Font.font(20));
                 if(i == 0)
                 {
                     GridPane.setConstraints(object, 1, i + 1);
+                    System.out.println(x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i).getNumberofFields());
                 }
                 else
                 {
-                    GridPane.setConstraints(object, 1, i + (x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i - 1).getNumberofFields()));
+                    z = z + x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i - 1).getNumberofFields();
+                    GridPane.setConstraints(object, 1, z);
+                    System.out.println(z);
                 }
 
                 grid.getChildren().addAll(object);
 
 
-
-                System.out.println(x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i).getObjectName());
 
                 //iterate over every field in current object
                 for(int j = 0; j < x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i).getNumberofFields(); j++){
@@ -96,7 +102,7 @@ public class HelloApplication extends Application
                     }
                     else
                     {
-                        GridPane.setConstraints(field, 2, j + 1 +  x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i - 1).getNumberofFields());
+                        GridPane.setConstraints(field, 2, j + z);
                     }
 
                     grid.getChildren().addAll(field);
