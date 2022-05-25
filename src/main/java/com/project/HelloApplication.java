@@ -34,8 +34,8 @@ public class HelloApplication extends Application
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.setVgap(10);
         grid.setHgap(10);
-        grid.setGridLinesVisible(false);
-        
+        grid.setGridLinesVisible(true);
+
 
         //declare choiceBox
         ChoiceBox<String> choiceBox = new ChoiceBox<>();
@@ -65,7 +65,8 @@ public class HelloApplication extends Application
             GridPane.setConstraints(request, 0, 1);
             grid.getChildren().addAll(request);
 
-            int z = 1;
+            //row index
+            int rowIndex = 1;
 
             //iterate over all objects in request in current operation
             for(int i = 0; i < x.getOperation(newValue.intValue() - 1).getRequestSize(); i++){
@@ -73,7 +74,7 @@ public class HelloApplication extends Application
 
 
                 Text object = new Text(x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i).getObjectName() + ":");
-                object.setFont(Font.font(20));
+                object.setFont(Font.font(15));
                 if(i == 0)
                 {
                     GridPane.setConstraints(object, 1, i + 1);
@@ -81,9 +82,8 @@ public class HelloApplication extends Application
                 }
                 else
                 {
-                    z = z + x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i - 1).getNumberofFields();
-                    GridPane.setConstraints(object, 1, z);
-                    System.out.println(z);
+                    rowIndex += x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i - 1).getNumberofFields();
+                    GridPane.setConstraints(object, 1, rowIndex);
                 }
 
                 grid.getChildren().addAll(object);
@@ -95,19 +95,18 @@ public class HelloApplication extends Application
 
                     Text field = new Text(x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i).getField(j).getName());
 
-                    field.setFont(Font.font(20));
+                    field.setFont(Font.font(15));
                     if(i == 0)
                     {
                         GridPane.setConstraints(field, 2, j + 1);
                     }
                     else
                     {
-                        GridPane.setConstraints(field, 2, j + z);
+                        GridPane.setConstraints(field, 2, j + rowIndex);
                     }
 
                     grid.getChildren().addAll(field);
 
-                    System.out.println(x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i).getField(j).getName());
                 }
             }
 
