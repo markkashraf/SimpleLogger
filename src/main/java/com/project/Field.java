@@ -13,12 +13,13 @@ public class Field
     private String Name;
     private transient String Parent;
 
-    public Field(String ObjectName, String ObjectType , String Mandatory ,String Parent)
+    public Field(String ObjectName, String ObjectType , String Mandatory ,String Parent, String IO)
     {
         this.Name = ObjectName;
         this.Type = ObjectType;
         this.Mandatory = Mandatory;
         this.Parent = Parent;
+        this.IO=IO;
     }
 
     public Field(XSSFSheet sheet, int row)

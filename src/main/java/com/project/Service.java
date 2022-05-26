@@ -49,9 +49,7 @@ public class Service
                     Current_HTTP_OP  =  readexcel.getCell(sheet,myRow.getRowNum()+2,0);
                     Current_Rest_URL = readexcel.getCell(sheet,myRow.getRowNum()+2,1);
                 }
-
             }
-
         }
     }
 

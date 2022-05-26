@@ -7,10 +7,14 @@ public class Obj extends Field
     private String ObjectName;
     private ArrayList<Field> Fields;
 
+    Obj(String ObjectName, String ObjectType , String Mandatory ,String Parent, String IO)
+    {
+        super(ObjectName,  ObjectType ,  Mandatory , Parent, IO);
+
+        Fields = new ArrayList<Field>();
+    }
     Obj()
     {
-        super();
-
         Fields = new ArrayList<Field>();
     }
 

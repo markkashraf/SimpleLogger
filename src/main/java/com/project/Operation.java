@@ -21,7 +21,7 @@ public class Operation {
         Request = new ArrayList<Field>();
         Response = new ArrayList<Field>();
         //Get the Fields from the Excel sheet
-        for (int i = Beginning_Row; i <= Ending_Row; i++)
+        for (int i = Beginning_Row; i <= Ending_Row+1; i++)
         {
             Field x = new Field(sheet, i); // Iterator for Rows in the Sheet
 
@@ -33,7 +33,7 @@ public class Operation {
             else if (!(x.getType().equals("Type")) && !(x.getType().equals(""))) //if the current field is not a string nor
             // Headers of the Table
             {
-                TempObjects.add((Obj) (new Field(x.getName(),x.getType(),x.getMandatory(), x.getParent()))); // Add it to the Objects Array
+                TempObjects.add(new Obj(x.getName(),x.getType(),x.getMandatory(), x.getParent() , x.getIO())); // Add it to the Objects Array
             }
 
         }
@@ -45,6 +45,10 @@ public class Operation {
                 if (TempObjects.get(j).getName().equals(TempFields.get(i).getParent())) //If you find parent
                 {
                     TempObjects.get(j).AddFields(TempFields.get(i));//append the Field to it
+                }
+                if(i<=j && TempObjects.get(j).getParent().equals(TempObjects.get(i).getName()))
+                {
+                    TempObjects.get(i).AddFields(TempObjects.get(j));
                 }
             }
             if (TempFields.get(i).getParent().equals("")) //If the Field has no parent, treat it as an object.
@@ -60,6 +64,19 @@ public class Operation {
             }
         }
 
+        for (Obj x : TempObjects)
+        {
+            if(x.getIO().equals("I"))
+            {
+                Request.add(x);
+            }
+
+            if(x.getIO().equals("O"))
+            {
+                Response.add(x);
+            }
+
+        }
         }
 
 
