@@ -15,9 +15,7 @@ import java.io.IOException;
 public class HelloApplication extends Application
 {
 
-    public static void main(String[] args) throws IOException
-    {
-
+    public static void main(String[] args) {
         launch(args);
 
     }
@@ -25,7 +23,7 @@ public class HelloApplication extends Application
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        XSSFSheet sheet = readexcel.getSheet1("src\\Test Excel File\\Example.xlsx");
+        XSSFSheet sheet = readexcel.getSheet1("src\\Test Excel File\\Exampl.xlsx");
 
         Service x = new Service(sheet);
 
@@ -124,7 +122,3 @@ public class HelloApplication extends Application
     }
 
 }
-
-
-
-

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.lucee:log4j-core:2.17.2.0001L">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/lucee/log4j-core/2.17.2.0001L/log4j-core-2.17.2.0001L.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/lucee/log4j-core/2.17.2.0001L/log4j-core-2.17.2.0001L-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/lucee/log4j-core/2.17.2.0001L/log4j-core-2.17.2.0001L-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

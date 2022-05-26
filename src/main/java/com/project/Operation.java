@@ -88,6 +88,7 @@ public class Operation {
                 {
                     x.AddFields(SortedObjects.get(i).get(j)); // Add it to the Fields Array of the Object.
                 }
+
             }
             if(SortedObjects.get(i).get(0).getIO().equals("I"))
             {
