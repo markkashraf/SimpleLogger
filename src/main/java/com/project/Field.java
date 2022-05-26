@@ -45,10 +45,14 @@ public class Field
 
     }
     public String getAllowedValues() {
-        if(AllowedValues == null)
-            return "";
+        if (AllowedValues == "")
+        {
+            return "ALL";
+        }
         else
+        {
             return AllowedValues;
+        }
     }
     public String getMandatory() {
         if(Mandatory == null)

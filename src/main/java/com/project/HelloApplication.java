@@ -23,16 +23,16 @@ public class HelloApplication extends Application
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        XSSFSheet sheet = readexcel.getSheet1("src\\Test Excel File\\Exampl.xlsx");
+        XSSFSheet sheet = readexcel.getSheet1("src\\Test Excel File\\Example.xlsx");
 
         Service x = new Service(sheet);
 
         //declare grid
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10, 10, 10, 10));
-        grid.setVgap(10);
-        grid.setHgap(10);
-        grid.setGridLinesVisible(true);
+        grid.setVgap(15);
+        grid.setHgap(40);
+        grid.setGridLinesVisible(false);
 
 
         //declare choiceBox
@@ -92,19 +92,28 @@ public class HelloApplication extends Application
                 for(int j = 0; j < x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i).getNumberofFields(); j++){
 
                     Text field = new Text(x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i).getField(j).getName());
+                    Text allowedValues = new Text(x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i).getField(j).getAllowedValues());
+                    Text mandatory = new Text(x.getOperation(newValue.intValue()- 1).getObjectFromRequest(i).getField(j).getMandatory());
+
 
                     field.setFont(Font.font(15));
+                    allowedValues.setFont(Font.font(15));
+                    mandatory.setFont(Font.font(15));
                     if(i == 0)
                     {
                         GridPane.setConstraints(field, 2, j + 1);
+                        GridPane.setConstraints(allowedValues, 3, j + 1);
+                        GridPane.setConstraints(mandatory, 4, j + 1);
+
                     }
                     else
                     {
                         GridPane.setConstraints(field, 2, j + rowIndex);
+                        GridPane.setConstraints(allowedValues, 3, j + rowIndex);
+                        GridPane.setConstraints(mandatory, 4, j + rowIndex);
                     }
 
-                    grid.getChildren().addAll(field);
-
+                    grid.getChildren().addAll(field, allowedValues, mandatory);
                 }
             }
 
