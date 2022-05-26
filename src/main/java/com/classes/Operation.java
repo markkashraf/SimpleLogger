@@ -59,6 +59,7 @@ public class Operation {
     }
     private void Init_Operation(XSSFSheet sheet,int Beginning_Row, int Ending_Row)
     {
+        //initialize 2 temp arrays.
         ArrayList<Field> TempFields = new ArrayList<Field>();
         ArrayList<Obj> TempObjects = new ArrayList<Obj>();
 
@@ -72,7 +73,7 @@ public class Operation {
                 TempFields.add(x);// add the Current Field to the Fields Array.
                 continue;
             }
-            else if (!(x.getType().equals("Type")) && !(x.getType().equals(""))) //if the current field is not a string nor
+            else if (!(x.getType().equals("Type")) && !(x.getType().equals(""))) //if the current field is not a string nor header of the table
 
             {
                 TempObjects.add(new Obj(x.getName(),x.getType(),x.getMandatory(), x.getParent() , x.getIO())); // Add it to the Objects Array
@@ -93,29 +94,29 @@ public class Operation {
                     TempObjects.get(i).AddFields(TempObjects.get(j));
                 }
             }
-            if (TempFields.get(i).getParent().equals("")) //If the Field has no parent, treat it as an object.
+            if (TempFields.get(i).getParent().equals("")) //If the Field has no parent, add it directly to the Request or Response.
             {
-                if(TempFields.get(i).getIO().equals("I"))
+                if(TempFields.get(i).getIO().equals("I")) //if it is a request
                 {
-                    Request.add(TempFields.get(i));
+                    Request.add(TempFields.get(i)); //add it to the requests array.
                 }
-                else if(TempFields.get(i).getIO().equals("O"))
+                else if(TempFields.get(i).getIO().equals("O"))//if it is a response.
                 {
-                    Response.add(TempFields.get(i));
+                    Response.add(TempFields.get(i));//add it to the responses array.
                 }
             }
         }
 
         for (Obj x : TempObjects)
         {
-            if(x.getIO().equals("I"))
+            if(x.getIO().equals("I")) //if it is a request
             {
-                Request.add(x);
+                Request.add(x); //add it to the requests array.
             }
 
-            if(x.getIO().equals("O"))
+            if(x.getIO().equals("O"))//if it is a response.
             {
-                Response.add(x);
+                Response.add(x);//add it to the responses array.
             }
         }
 
