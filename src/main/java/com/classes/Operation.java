@@ -88,7 +88,7 @@ public class Operation {
                 {
                     TempObjects.get(j).AddFields(TempFields.get(i));//append the Field to it
                 }
-                if(i<=j && TempObjects.get(j).getParent().equals(TempObjects.get(i).getName()))
+                if(i<=j && TempObjects.get(j).getParent().equals(TempObjects.get(i).getName())) //If you find the parent of this object, add this object to its fields
                 {
                     TempObjects.get(i).AddFields(TempObjects.get(j));
                 }
