@@ -24,7 +24,7 @@ public class Operation {
         Request = new ArrayList<Obj>();
         Response = new ArrayList<Obj>();
         //Get the Fields from the Excel sheet
-        for (int i = Beginning_Row; i <= Ending_Row; i++)
+        for (int i = Beginning_Row; i <= Ending_Row + 1; i++)
         {
             Field x = new Field(sheet, i); // Iterator for Rows in the Sheet
 

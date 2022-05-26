@@ -84,7 +84,6 @@ public class HelloApplication extends Application
                 if(i == 0)
                 {
                     GridPane.setConstraints(object, 1, i + 1);
-                    System.out.println(x.getOperation(newValue.intValue() - 1).getObjectFromRequest(i).getNumberofFields());
                 }
                 else
                 {
@@ -147,7 +146,6 @@ public class HelloApplication extends Application
                 if(i == 0)
                 {
                     GridPane.setConstraints(object, 1, i + offset);
-                    System.out.println(x.getOperation(newValue.intValue() - 1).getObjectFromResponse(i).getNumberofFields());
                 }
                 else
                 {
@@ -182,14 +180,11 @@ public class HelloApplication extends Application
                         GridPane.setConstraints(field, 2, j + rowIndex2);
                         GridPane.setConstraints(allowedValues, 3, j + rowIndex2);
                         GridPane.setConstraints(mandatory, 4, j + rowIndex2);
-                        System.out.println(x.getOperation(newValue.intValue()- 1).getObjectFromResponse(i).getField(j).getName());
                     }
 
                     grid.getChildren().addAll(field, allowedValues, mandatory);
                 }
             }
-
-
 
         });
 
