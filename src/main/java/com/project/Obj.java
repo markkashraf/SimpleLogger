@@ -2,15 +2,16 @@ package com.project;
 
 import java.util.ArrayList;
 
-public class Obj
+public class Obj extends Field
 {
     private String ObjectName;
     private ArrayList<Field> Fields;
 
     Obj()
     {
+        super();
+
         Fields = new ArrayList<Field>();
-        ArrayList<Obj> InternalObjects = new ArrayList<Obj>();
     }
 
     public void AddFields(Field x)

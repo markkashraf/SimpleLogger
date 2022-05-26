@@ -13,6 +13,14 @@ public class Field
     private String Name;
     private transient String Parent;
 
+    public Field(String ObjectName, String ObjectType , String Mandatory ,String Parent)
+    {
+        this.Name = ObjectName;
+        this.Type = ObjectType;
+        this.Mandatory = Mandatory;
+        this.Parent = Parent;
+    }
+
     public Field(XSSFSheet sheet, int row)
     {
         try
@@ -35,6 +43,11 @@ public class Field
         {
 
         }
+    }
+
+    public Field()
+    {
+
     }
 
     public String getType() {

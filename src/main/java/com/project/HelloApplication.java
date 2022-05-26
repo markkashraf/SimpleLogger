@@ -12,15 +12,16 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application
-{
+public class HelloApplication {
+    public static void main(String[] args) throws IOException {
+        XSSFSheet sheet = readexcel.getSheet1("src\\Test Excel File\\Exampl.xlsx");
 
-    public static void main(String[] args) {
-        launch(args);
+        Service x = new Service(sheet);
+
 
     }
 
-    @Override
+   /* @Override
     public void start(Stage primaryStage) throws IOException {
 
         XSSFSheet sheet = readexcel.getSheet1("src\\Test Excel File\\Exampl.xlsx");
@@ -119,6 +120,7 @@ public class HelloApplication extends Application
         primaryStage.setScene(scene);
         primaryStage.show();
 
-    }
+    }*/
 
 }
+
